@@ -13,6 +13,7 @@ Para isso, deve-se criar um arquivo chamado "Diretorio_QuadrasFiscais.txt" na pa
 * Inserir o github nos arquivos (TRACK, ISSUE, Descrição do Plugin)
 * Ajustar o METADADO
 * Inserir a opção de fonte de dado pelo campo SQ
+* Inserir campo para o tipo de quadra
 * Avaliar se já existe o croqui na pasta padrão
 * Verificar a sucesso do download
 * Verificar limite de Requests
