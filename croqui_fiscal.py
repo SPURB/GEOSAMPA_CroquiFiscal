@@ -303,10 +303,14 @@ class SP_CroquiFiscal:
                 
                 # Obtem os valores distintos de SQ, somente das que são do tipo FISCAL
                 SQ_Lista = set() # Limpa gratuitamente o SQ_Lista
-                for feature in selectedFeatures:
-                    if feature['qd_tipo'] == 'F':
-                        SQ_Lista.add(feature[Campo_Setor]+feature[Campo_Quadra])
+                field_index = choosedLayers.fields().indexFromName('qd_tipo') # Verifica se existe o campo de TIPO da quadra
 
+                for feature in selectedFeatures:
+                    if field_index != -1: # Verifica se existe o campo de TIPO da quadra
+                        if feature['qd_tipo'] == 'F':
+                            SQ_Lista.add(feature[Campo_Setor]+feature[Campo_Quadra])
+                    else:
+                        SQ_Lista.add(feature[Campo_Setor]+feature[Campo_Quadra])
             else:
                 SQ_Lista = self.dlg._SQ_list.text()
                 SQ_Lista = set(SQ_Lista.split(', '))
@@ -347,7 +351,7 @@ class SP_CroquiFiscal:
 
 
                 # Cria um novo arquivo e salva o conteúdo
-                file = open(folderName + r'\CroquiFiscal---{0:0>3}_{1:0>3}---{2}.pdf'.format(SQ[:3], SQ[3:], now), 'w')
+                file = open(folderName + r'\CroquiFiscal---{0:0>3}_{1:0>3}---{2}.pdf'.format(SQ[:3], SQ[3:], now), 'bw')
                 # file.write(fileobj) ########## MODO DE TESTE
                 file.write(urllib.request.urlopen(uri).read())
                 file.close()
