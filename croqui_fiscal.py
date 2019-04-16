@@ -260,7 +260,8 @@ class SP_CroquiFiscal:
         # Choose the active Layer
         layers = [l.layer() for l in layers]
         index = layers.index(iface.activeLayer())
-        self.dlg._camada.setCurrentIndex(index)
+        if index is not None:
+            self.dlg._camada.setCurrentIndex(index)
 
         # FIELDS OPTION
         self.load_fields()
